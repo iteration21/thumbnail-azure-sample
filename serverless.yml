@@ -1,0 +1,25 @@
+service: thumbnail-azure-${opt:id}
+
+custom:
+  storage-account-name: ${opt:storage-account-name}
+  storage-account-key: ${opt:storage-account-key}
+
+provider:
+  name: azure
+  location: centralus
+  environment:
+    AZURE_STORAGE_ACCOUNT_NAME: ${self:custom.storage-account-name}
+    AZURE_STORAGE_ACCOUNT_KEY: ${self:custom.storage-account-key}
+    FUNCTIONS_WORKER_RUNTIME: java
+    MAIN_CLASS: example.Application
+
+plugins:
+  - serverless-azure-functions
+
+
+functions:
+  thumbnail:
+    handler: example.config.Handler.execut
+    scriptFile: thumbnail-0.0.1-SNAPSHOT.jar
+    package:
+      artifact: target/thumbnail-0.0.1-SNAPSHOT.zip

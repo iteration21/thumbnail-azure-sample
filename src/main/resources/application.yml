@@ -1,0 +1,15 @@
+app:
+    max-width: 250
+    max-height: 250
+    image-format: png
+
+spring:
+  cloud: 
+    function:
+      scan:
+        packages: example.functions
+
+azure:
+  storage:
+    container-name: slsstoragecontainer
+    
